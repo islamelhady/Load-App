@@ -1,4 +1,4 @@
-package com.elhady.loadapp
+package com.udacity
 
 import org.junit.Test
 
