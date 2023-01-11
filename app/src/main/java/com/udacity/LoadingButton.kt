@@ -3,8 +3,11 @@ package com.udacity
 import android.animation.ValueAnimator
 import android.content.Context
 import android.graphics.Canvas
+import android.graphics.Paint
+import android.graphics.RectF
 import android.util.AttributeSet
 import android.view.View
+import androidx.core.content.ContextCompat
 import kotlin.properties.Delegates
 
 class LoadingButton @JvmOverloads constructor(
@@ -12,6 +15,9 @@ class LoadingButton @JvmOverloads constructor(
 ) : View(context, attrs, defStyleAttr) {
     private var widthSize = 0
     private var heightSize = 0
+
+    private var buttonBackgroundColor = ContextCompat.getColor(context, R.color.colorPrimary)
+    private var buttonBackgroundRect = RectF()
 
     private val valueAnimator = ValueAnimator()
 
@@ -24,10 +30,26 @@ class LoadingButton @JvmOverloads constructor(
 
     }
 
+    private val paintButtonBackground = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+        // Paint styles used for rendering are initialized here. This
+        // is a performance optimization, since onDraw() is called
+        // for every screen refresh.
+        style = Paint.Style.FILL
+        color = buttonBackgroundColor
+    }
 
-    override fun onDraw(canvas: Canvas?) {
+    private fun drawButtonBackground(canvas: Canvas) {
+        buttonBackgroundRect.set(0f, 0f, widthSize.toFloat(), heightSize.toFloat())
+        canvas.drawRect(buttonBackgroundRect, paintButtonBackground)
+    }
+
+    /** onDraw() method to draw the custom view, using a Canvas object styled by a Paint object.
+     * The onDraw() method is called every time the screen refreshes,
+     * which can be many times a second
+     */
+    override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-
+        drawButtonBackground(canvas)
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {

@@ -58,25 +58,25 @@
             android:text="@string/retrofit_radio_name" />
     </RadioGroup>
 
-<!--    <com.udacity.LoadingButton-->
-<!--        android:id="@+id/custom_button"-->
-<!--        android:layout_width="0dp"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        android:layout_height="60dp"-->
-<!--        android:layout_margin="20dp"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
-    <Button
+    <com.udacity.LoadingButton
         android:id="@+id/custom_button"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="60dp"
-        android:text="download"
         android:layout_margin="20dp"
-        android:background="@color/colorPrimary"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        />
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+<!--    <Button-->
+<!--        android:id="@+id/custom_button"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="60dp"-->
+<!--        android:text="download"-->
+<!--        android:layout_margin="20dp"-->
+<!--        android:background="@color/colorPrimary"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
