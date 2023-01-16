@@ -32,7 +32,8 @@ class LoadingButton @JvmOverloads constructor(
     private var buttonBackgroundColor = ContextCompat.getColor(context, R.color.colorPrimary)
     private var buttonBackgroundRect = RectF()
     private var buttonTextColor = ContextCompat.getColor(context, R.color.white)
-    private var buttonText = BUTTON_TEXT
+    private var defaultButtonText = BUTTON_TEXT
+    private var buttonText = defaultButtonText
     private var animatedButtonText = ANIMATION_BUTTON_TEXT
     private var buttonAnimationRect = RectF()
     private var buttonAnimationBackgroundColor = ContextCompat.getColor(context, R.color.colorPrimaryDark)
@@ -69,7 +70,7 @@ class LoadingButton @JvmOverloads constructor(
             }
             ButtonState.Completed -> {
                 valueAnimator.cancel()
-                buttonText = buttonText
+                buttonText = defaultButtonText
                 invalidate()
             }
         }
@@ -104,7 +105,6 @@ class LoadingButton @JvmOverloads constructor(
         if (buttonState == ButtonState.Loading) {
             buttonBackgroundRect.set(0f, 0f, widthSize.toFloat(), heightSize.toFloat())
             canvas.drawRect(buttonBackgroundRect, paintButtonBackground)
-
             buttonAnimationRect.set(0f, 0f, widthSize * loading, heightSize.toFloat())
             canvas.drawRect(buttonAnimationRect, paintAnimationButtonBackground)
         } else {
