@@ -1,5 +1,7 @@
 package com.udacity
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
 import android.animation.ValueAnimator
 import android.content.Context
 import android.graphics.Canvas
@@ -8,6 +10,7 @@ import android.graphics.RectF
 import android.graphics.Typeface
 import android.util.AttributeSet
 import android.view.View
+import android.view.animation.LinearInterpolator
 import androidx.core.content.ContextCompat
 import kotlin.properties.Delegates
 
@@ -18,15 +21,58 @@ class LoadingButton @JvmOverloads constructor(
     private var heightSize = 0
     private var textWidth = 0f
 
+    private val animationDuration = 4000L
+    private var loading = 0f
+
+    companion object {
+        private const val ANIMATION_BUTTON_TEXT = "We are loading"
+        private const val BUTTON_TEXT = "Download"
+    }
+
     private var buttonBackgroundColor = ContextCompat.getColor(context, R.color.colorPrimary)
     private var buttonBackgroundRect = RectF()
     private var buttonTextColor = ContextCompat.getColor(context, R.color.white)
-    private var buttonText = "Download"
+    private var buttonText = BUTTON_TEXT
+    private var animatedButtonText = ANIMATION_BUTTON_TEXT
+    private var buttonAnimationRect = RectF()
+    private var buttonAnimationBackgroundColor = ContextCompat.getColor(context, R.color.colorPrimaryDark)
 
-    private val valueAnimator = ValueAnimator()
+    private val valueAnimator = ValueAnimator.ofFloat(0f, 1f).apply {
+        duration = animationDuration
+        interpolator = LinearInterpolator()
+        addUpdateListener {
+            loading = it.animatedValue as Float
+            invalidate()
+        }
+        addListener(object : AnimatorListenerAdapter() {
+            override fun onAnimationStart(animation: Animator?) {
+                buttonState = ButtonState.Loading
+                this@LoadingButton.isEnabled = false
+            }
 
-    private var buttonState: ButtonState by Delegates.observable<ButtonState>(ButtonState.Completed) { p, old, new ->
+            override fun onAnimationEnd(animation: Animator?) {
+                buttonState = ButtonState.Completed
+                this@LoadingButton.isEnabled = true
+            }
+        })
+    }
 
+    var buttonState: ButtonState by Delegates.observable<ButtonState>(ButtonState.Completed) { p, old, new ->
+        when (new) {
+            ButtonState.Clicked -> {
+                valueAnimator.start()
+                invalidate()
+            }
+            ButtonState.Loading -> {
+                buttonText = animatedButtonText
+                invalidate()
+            }
+            ButtonState.Completed -> {
+                valueAnimator.cancel()
+                buttonText = buttonText
+                invalidate()
+            }
+        }
     }
 
 
@@ -42,6 +88,11 @@ class LoadingButton @JvmOverloads constructor(
         color = buttonBackgroundColor
     }
 
+    private val paintAnimationButtonBackground = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+        style = Paint.Style.FILL
+        color = buttonAnimationBackgroundColor
+    }
+
     private val paintButtonText = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         style = Paint.Style.FILL
         color = buttonTextColor
@@ -50,8 +101,16 @@ class LoadingButton @JvmOverloads constructor(
         textAlign = Paint.Align.LEFT
     }
     private fun drawButtonBackground(canvas: Canvas) {
-        buttonBackgroundRect.set(0f, 0f, widthSize.toFloat(), heightSize.toFloat())
-        canvas.drawRect(buttonBackgroundRect, paintButtonBackground)
+        if (buttonState == ButtonState.Loading) {
+            buttonBackgroundRect.set(0f, 0f, widthSize.toFloat(), heightSize.toFloat())
+            canvas.drawRect(buttonBackgroundRect, paintButtonBackground)
+
+            buttonAnimationRect.set(0f, 0f, widthSize * loading, heightSize.toFloat())
+            canvas.drawRect(buttonAnimationRect, paintAnimationButtonBackground)
+        } else {
+            buttonBackgroundRect.set(0f, 0f, widthSize.toFloat(), heightSize.toFloat())
+            canvas.drawRect(buttonBackgroundRect, paintButtonBackground)
+        }
     }
     private fun drawButtonText(canvas: Canvas){
         textWidth = paintButtonText.measureText(buttonText)

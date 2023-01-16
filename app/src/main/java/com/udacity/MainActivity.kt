@@ -42,7 +42,8 @@ class MainActivity : AppCompatActivity() {
 //            download()
 //        }
         custom_button.setOnClickListener{
-            notificationManager.sendDownloadCompleted("Test Notification", applicationContext)
+//            notificationManager.sendDownloadCompleted("Test Notification", applicationContext)
+            custom_button.buttonState = ButtonState.Clicked
         }
     }
 
