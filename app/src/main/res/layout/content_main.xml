@@ -28,7 +28,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/imageView"
-        app:layout_constraintBottom_toTopOf="@id/custom_button">
+        app:layout_constraintBottom_toTopOf="@id/customButton">
 
         <RadioButton
             android:id="@+id/glideRadioButton"
@@ -59,24 +59,13 @@
     </RadioGroup>
 
     <com.udacity.LoadingButton
-        android:id="@+id/custom_button"
+        android:id="@+id/customButton"
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:layout_margin="20dp"
+        app:animationColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" />
-
-<!--    <Button-->
-<!--        android:id="@+id/custom_button"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="60dp"-->
-<!--        android:text="download"-->
-<!--        android:layout_margin="20dp"-->
-<!--        android:background="@color/colorPrimary"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
