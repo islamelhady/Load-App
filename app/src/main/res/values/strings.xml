@@ -30,5 +30,9 @@
     <string name="success">Success</string>
     <string name="failed">Failed</string>
     <string name="unknown">Unknown</string>
+    <string name="ok">OK</string>
+    <string name="file_name">File Name:</string>
+    <string name="master_zip">master.zip</string>
+    <string name="status">Status:</string>
 
 </resources>
