@@ -12,9 +12,9 @@ private val NOTIFICATION_ID = 0
 
 fun NotificationManager.sendDownloadCompleted(fileName: String, fileDescription: String, status: String, applicationContext: Context) {
     val extras = Bundle()
-    extras.putString("status", status)
-    extras.putString("fileName", fileName)
-    extras.putString("fileDescription", fileDescription)
+    extras.putString(applicationContext.getString(R.string.key_file_name), fileName)
+    extras.putString(applicationContext.getString(R.string.key_description), fileDescription)
+    extras.putString(applicationContext.getString(R.string.key_status), status)
 
     val detailIntent = Intent(applicationContext, DetailActivity::class.java)
     detailIntent.putExtras(extras)

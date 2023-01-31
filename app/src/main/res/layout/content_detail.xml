@@ -66,10 +66,34 @@
         app:layout_constraintStart_toStartOf="@+id/fileName"
         app:layout_constraintTop_toBottomOf="@+id/fileStatus" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/ok_button"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/fileDescription"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:padding="8dp"
+        android:text="@string/file_description"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fileStatusView" />
+
+
+    <TextView
+        android:id="@+id/fileDescriptionView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:padding="8dp"
+        android:text="@string/glide_description"
+        app:layout_constraintStart_toStartOf="@+id/fileName"
+        app:layout_constraintTop_toBottomOf="@+id/fileDescription" />
+
+
+    <Button
+        android:id="@+id/okButton"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
         android:textColor="@color/white"
         android:layout_margin="16dp"
         android:backgroundTint="@color/colorPrimary"

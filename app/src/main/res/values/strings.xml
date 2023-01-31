@@ -35,4 +35,10 @@
     <string name="master_zip">master.zip</string>
     <string name="status">Status:</string>
 
+    <string name="key_file_name">fileName</string>
+    <string name="key_description">fileDescription</string>
+    <string name="key_status">status</string>
+    <string name="file_description">description</string>
+
+
 </resources>
