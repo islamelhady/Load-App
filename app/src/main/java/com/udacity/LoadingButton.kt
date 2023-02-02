@@ -4,10 +4,7 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.ValueAnimator
 import android.content.Context
-import android.graphics.Canvas
-import android.graphics.Paint
-import android.graphics.RectF
-import android.graphics.Typeface
+import android.graphics.*
 import android.util.AttributeSet
 import android.view.View
 import android.view.animation.LinearInterpolator
@@ -37,6 +34,8 @@ class LoadingButton @JvmOverloads constructor(
     private var animatedButtonText = ANIMATION_BUTTON_TEXT
     private var buttonAnimationRect = RectF()
     private var buttonAnimationBackgroundColor = ContextCompat.getColor(context, R.color.colorPrimaryDark)
+    private var circleAnimationColor = ContextCompat.getColor(context, R.color.colorAccent)
+    private var boundText = Rect()
 
     private val valueAnimator = ValueAnimator.ofFloat(0f, 1f).apply {
         duration = animationDuration
@@ -101,6 +100,11 @@ class LoadingButton @JvmOverloads constructor(
         typeface = Typeface.DEFAULT
         textAlign = Paint.Align.LEFT
     }
+
+    private val paintCircleAnimation = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+        color = circleAnimationColor
+        style = Paint.Style.FILL
+    }
     private fun drawButtonBackground(canvas: Canvas) {
         if (buttonState == ButtonState.Loading) {
             buttonBackgroundRect.set(0f, 0f, widthSize.toFloat(), heightSize.toFloat())
@@ -120,6 +124,14 @@ class LoadingButton @JvmOverloads constructor(
             (heightSize - (paintButtonText.ascent() + paintButtonText.descent())) / 2f, paintButtonText)
     }
 
+    private fun drawButtonCircle(canvas: Canvas) {
+        if (buttonState == ButtonState.Loading) {
+            paintButtonText.getTextBounds(buttonText, 0, buttonText.length, boundText)
+            val radius = boundText.height().toFloat()
+            canvas.translate((widthSize + textWidth + radius) / 2f, heightSize / 2f - radius / 2)
+            canvas.drawArc(0f, 0f, radius, radius, 0f, 360f * loading, true, paintCircleAnimation)
+        }
+    }
     /** onDraw() method to draw the custom view, using a Canvas object styled by a Paint object.
      * The onDraw() method is called every time the screen refreshes,
      * which can be many times a second
@@ -128,6 +140,7 @@ class LoadingButton @JvmOverloads constructor(
         super.onDraw(canvas)
         drawButtonBackground(canvas)
         drawButtonText(canvas)
+        drawButtonCircle(canvas)
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
