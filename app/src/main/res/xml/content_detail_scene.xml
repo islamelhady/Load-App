@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:autoTransition="animateToEnd"
+        motion:constraintSetEnd="@+id/end"
+        motion:constraintSetStart="@id/start"
+        motion:duration="3000">
+       <KeyFrameSet>
+       </KeyFrameSet>
+    </Transition>
+
+
+    <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:id="@+id/fileName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintTop_toBottomOf="@+id/downloadView"
+            motion:layout_constraintEnd_toEndOf="parent" />
+        <Constraint
+            android:id="@+id/fileStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintTop_toBottomOf="@+id/fileNameView"
+            motion:layout_constraintEnd_toEndOf="parent" />
+        <Constraint
+            android:id="@+id/fileDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintTop_toBottomOf="@+id/fileStatusView"
+            motion:layout_constraintEnd_toEndOf="parent" />
+        <Constraint
+            android:id="@+id/fileNameView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintTop_toBottomOf="@+id/fileName"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:alpha="0" />
+        <Constraint
+            android:id="@+id/fileStatusView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintTop_toBottomOf="@+id/fileStatus"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:alpha="0" />
+        <Constraint
+            android:id="@+id/fileDescriptionView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintTop_toBottomOf="@+id/fileDescription"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:alpha="0" />
+        <Constraint
+            android:id="@+id/okButton"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_margin="16dp"
+            android:backgroundTint="@color/colorAccent"
+            android:text="@string/ok"
+            android:textColor="@color/white"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintStart_toStartOf="parent" />
+        <Constraint
+            android:id="@id/downloadView"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="200dp"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintStart_toStartOf="parent" />
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:id="@+id/fileName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintTop_toBottomOf="@+id/downloadView"
+            motion:layout_constraintStart_toStartOf="parent" />
+        <Constraint
+            android:id="@+id/fileStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintTop_toBottomOf="@+id/fileNameView"
+            motion:layout_constraintStart_toStartOf="parent" />
+        <Constraint
+            android:id="@+id/fileDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintTop_toBottomOf="@+id/fileStatusView"
+            motion:layout_constraintStart_toStartOf="parent" />
+        <Constraint
+            android:id="@+id/fileNameView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintTop_toBottomOf="@+id/fileName"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:alpha="1" />
+        <Constraint
+            android:id="@+id/fileStatusView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintTop_toBottomOf="@+id/fileStatus"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:alpha="1" />
+        <Constraint
+            android:id="@+id/fileDescriptionView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintTop_toBottomOf="@+id/fileDescription"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:alpha="1" />
+        <Constraint
+            android:id="@+id/okButton"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_margin="16dp"
+            android:backgroundTint="@color/colorAccent"
+            android:text="@string/ok"
+            android:textColor="@color/white"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintStart_toStartOf="parent" />
+        <Constraint
+            android:id="@id/downloadView"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintStart_toStartOf="parent" />
+
+    </ConstraintSet>
+</MotionScene>

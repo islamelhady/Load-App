@@ -9,6 +9,7 @@ import android.util.AttributeSet
 import android.view.View
 import android.view.animation.LinearInterpolator
 import androidx.core.content.ContextCompat
+import androidx.core.content.withStyledAttributes
 import kotlin.properties.Delegates
 
 class LoadingButton @JvmOverloads constructor(
@@ -77,7 +78,12 @@ class LoadingButton @JvmOverloads constructor(
 
 
     init {
-
+        context.withStyledAttributes(attrs, R.styleable.LoadingButton) {
+            buttonBackgroundColor = getColor(R.styleable.LoadingButton_backgroundColor, 0)
+            circleAnimationColor = getColor(R.styleable.LoadingButton_circleColor, 0)
+            buttonTextColor = getColor(R.styleable.LoadingButton_textColor, 0)
+            buttonAnimationBackgroundColor = getColor(R.styleable.LoadingButton_animationColor, 0)
+        }
     }
 
     private val paintButtonBackground = Paint(Paint.ANTI_ALIAS_FLAG).apply {
