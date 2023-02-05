@@ -13,8 +13,8 @@ App for Advanced Android Developer Kotlin Nanodegree by Udacity that download a 
 
 ## Screenshots
 
-<img align="right" src="snapshots/snapshot1.png" width="200">
-<img align="right" src="snapshots/snapshot2.png" width="200">
-<img align="right" src="snapshots/snapshot3.png" width="200">
+<img align="left" src="snapshots/snapshot1.png" width="200">
+<img align="left" src="snapshots/snapshot2.png" width="200">
+<img align="left" src="snapshots/snapshot3.png" width="200">
 
 
